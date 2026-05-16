@@ -57,7 +57,16 @@ Edit → test locally (`python3 -m http.server 8000`) → `git push`. GitHub Pag
 const CACHE_VERSION = 'magick-v1';  // → 'magick-v2', 'magick-v3', ...
 ```
 
-Otherwise the installed PWA will keep serving the old cached copy. On iPhone the new service worker installs on the next launch and takes effect on the launch after that — so a stale-looking app usually just needs one extra open. If it ever feels truly stuck: remove from home screen, reload in Safari, Add to Home Screen again.
+Otherwise the installed PWA will keep serving the old cached copy.
+
+On iPhone, "launch" means a **cold start**, not just resuming from the app switcher:
+
+- Resuming a suspended app (tapping the icon while it's still in the switcher carousel) doesn't reload the page or re-check the service worker — you see exactly what you saw last time.
+- A cold start happens when the app was swiped away in the switcher, or iOS killed it under memory pressure. Then tapping the icon does a fresh page load and the browser fetches `sw.js`.
+
+To force a cold start: open the app switcher, swipe the magick card up to kill it, then tap the home-screen icon.
+
+The new service worker installs on the first cold start after a deploy and takes effect on the next page load (`skipWaiting` + `clients.claim` in `sw.js` often collapses this to one launch, but iOS is conservative — plan on two cold starts). If it ever feels truly stuck: remove from home screen, reload in Safari, Add to Home Screen again.
 
 **If you change the IndexedDB schema** (new field, new index — uncommon for additive changes to records), bump the version in `app.js`:
 
