@@ -1,9 +1,9 @@
-const CACHE_VERSION = 'magick-v1';
+const CACHE_VERSION = 'magick-v5';
 const ASSETS = [
   './',
   './index.html',
-  './app.js',
-  './style.css',
+  './app.js?v=5',
+  './style.css?v=5',
   './manifest.webmanifest',
   './icons/icon-180.png',
   './icons/icon-192.png',

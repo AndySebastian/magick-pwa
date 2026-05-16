@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="icons/icon-180.png">
   <link rel="icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
   <title>magick</title>
 </head>
 <body>
@@ -33,17 +33,16 @@
       <p id="confirmation" aria-live="polite"></p>
     </section>
 
-    <section id="history-view" class="view" hidden>
-      <ul id="history-list"></ul>
-      <p id="history-empty" hidden>(No casts logged yet.)</p>
+    <section class="history-disclosure">
+      <button id="tab-history" class="tab" aria-controls="history-view" aria-expanded="false">history</button>
+
+      <section id="history-view" class="history-panel" hidden>
+        <ul id="history-list"></ul>
+        <p id="history-empty" hidden>(No casts logged yet.)</p>
+      </section>
     </section>
   </main>
 
-  <nav>
-    <button id="tab-cast" class="tab" data-view="cast-view">cast</button>
-    <button id="tab-history" class="tab" data-view="history-view">history</button>
-  </nav>
-
-  <script src="app.js"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

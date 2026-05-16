@@ -41,9 +41,7 @@ const intentInput = document.getElementById('intent');
 const confirmation = document.getElementById('confirmation');
 const historyList = document.getElementById('history-list');
 const historyEmpty = document.getElementById('history-empty');
-const castView = document.getElementById('cast-view');
 const historyView = document.getElementById('history-view');
-const tabCast = document.getElementById('tab-cast');
 const tabHistory = document.getElementById('tab-history');
 
 form.addEventListener('submit', async (e) => {
@@ -98,23 +96,20 @@ async function renderHistory() {
   }
 }
 
-function switchView(viewId) {
-  const showCast = viewId === 'cast-view';
-  castView.hidden = !showCast;
-  historyView.hidden = showCast;
-  tabCast.classList.toggle('active', showCast);
-  tabHistory.classList.toggle('active', !showCast);
-  if (!showCast) renderHistory();
-  try { localStorage.setItem('view', viewId); } catch {}
+async function setHistoryOpen(isOpen) {
+  historyView.hidden = !isOpen;
+  tabHistory.classList.toggle('active', isOpen);
+  tabHistory.setAttribute('aria-expanded', String(isOpen));
+  if (isOpen) await renderHistory();
+  try { localStorage.setItem('historyOpen', String(isOpen)); } catch {}
 }
 
-tabCast.addEventListener('click', () => switchView('cast-view'));
-tabHistory.addEventListener('click', () => switchView('history-view'));
+tabHistory.addEventListener('click', () => setHistoryOpen(historyView.hidden));
 
-const lastView = (() => {
-  try { return localStorage.getItem('view') || 'cast-view'; } catch { return 'cast-view'; }
+const historyOpen = (() => {
+  try { return localStorage.getItem('historyOpen') === 'true'; } catch { return false; }
 })();
-switchView(lastView);
+setHistoryOpen(historyOpen);
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
