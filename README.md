@@ -6,6 +6,8 @@ Two views:
 - **cast** — type an intent, get the confirmation: *the spell is cast for "X". Godspeed.*
 - **history** — every past cast, newest first, with timestamps.
 
+**Chaining multiple intents:** separate them with semicolons, e.g. `do laundry; order food; meditate for 5 minutes`. Today they're recorded together as one entry — splitting them into separate history lines is a planned enhancement, but the convention is forward-compatible.
+
 Casts are stored locally in IndexedDB on the device. No backend, no sync with the CLI's `~/.magick/logofcasts` file. The record format matches the CLI's line format (`ISO 8601 UTC | intent`) so a future export feature is straightforward.
 
 ## Running locally
