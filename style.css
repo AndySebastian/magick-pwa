@@ -1,0 +1,169 @@
+:root {
+  --bg: #0a0a0a;
+  --fg: #f0f0f0;
+  --dim: #777;
+  --accent: #fff;
+  --border: #222;
+  --serif: Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overscroll-behavior: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#cast-view {
+  justify-content: center;
+}
+
+#cast-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+#intent {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--fg);
+  font-size: 1.5rem;
+  font-family: var(--serif);
+  padding: 0.75rem 0;
+  outline: none;
+  width: 100%;
+}
+#intent::placeholder {
+  color: var(--dim);
+  font-style: italic;
+}
+#intent:focus {
+  border-bottom-color: var(--accent);
+}
+
+#cast-form button {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  font-family: var(--serif);
+  font-size: 1rem;
+  padding: 0.75rem 1.75rem;
+  min-height: 44px;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  -webkit-tap-highlight-color: transparent;
+}
+#cast-form button:active {
+  background: var(--border);
+}
+
+#confirmation {
+  margin-top: 2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--fg);
+  min-height: 1.5rem;
+  line-height: 1.5;
+}
+
+#history-view {
+  padding-top: 0.5rem;
+}
+
+#history-list {
+  list-style: none;
+}
+
+#history-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+#history-list .intent {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+#history-list time {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--dim);
+  letter-spacing: 0.02em;
+}
+
+#history-empty {
+  color: var(--dim);
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  margin-top: 3rem;
+}
+
+nav {
+  display: flex;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--dim);
+  font-family: var(--serif);
+  font-size: 1rem;
+  padding: 1rem;
+  min-height: 44px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab.active {
+  color: var(--fg);
+}
+.tab:active {
+  background: var(--border);
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="magick">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <title>magick</title>
+</head>
+<body>
+  <main>
+    <section id="cast-view" class="view">
+      <form id="cast-form" autocomplete="off">
+        <input
+          id="intent"
+          type="text"
+          name="intent"
+          autocomplete="off"
+          autocapitalize="none"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="cast&hellip;"
+          aria-label="intent"
+        >
+        <button type="submit">cast</button>
+      </form>
+      <p id="confirmation" aria-live="polite"></p>
+    </section>
+
+    <section id="history-view" class="view" hidden>
+      <ul id="history-list"></ul>
+      <p id="history-empty" hidden>(No casts logged yet.)</p>
+    </section>
+  </main>
+
+  <nav>
+    <button id="tab-cast" class="tab" data-view="cast-view">cast</button>
+    <button id="tab-history" class="tab" data-view="history-view">history</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
