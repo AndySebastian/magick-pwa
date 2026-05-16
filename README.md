@@ -46,3 +46,23 @@ The PWA needs HTTPS for the service worker and the iOS "Add to Home Screen" inst
 - `manifest.webmanifest` — PWA manifest.
 - `sw.js` — cache-first service worker for offline use.
 - `icons/` — home-screen icons.
+
+## Updating
+
+Edit → test locally (`python3 -m http.server 8000`) → `git push`. GitHub Pages rebuilds in 1–2 minutes; the URL stays the same.
+
+**One non-obvious rule:** if you change any file in the `ASSETS` list inside `sw.js` (the html, css, js, manifest, or icons), bump `CACHE_VERSION` in the same commit:
+
+```js
+const CACHE_VERSION = 'magick-v1';  // → 'magick-v2', 'magick-v3', ...
+```
+
+Otherwise the installed PWA will keep serving the old cached copy. On iPhone the new service worker installs on the next launch and takes effect on the launch after that — so a stale-looking app usually just needs one extra open. If it ever feels truly stuck: remove from home screen, reload in Safari, Add to Home Screen again.
+
+**If you change the IndexedDB schema** (new field, new index — uncommon for additive changes to records), bump the version in `app.js`:
+
+```js
+indexedDB.open(DB_NAME, 1)  // → 2, 3, ...
+```
+
+…and handle the migration in `onupgradeneeded`. Purely additive record fields don't require this.
