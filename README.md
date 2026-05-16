@@ -1,6 +1,6 @@
 # magick PWA
 
-An installable web app version of the [magick](../magick) CLI. Same ritual, on your phone.
+An installable web app version of the [magick](https://github.com/AndySebastian/magick) CLI. Same ritual, on your phone.
 
 Two views:
 - **cast** — type an intent, get the confirmation: *the spell is cast for "X". Godspeed.*
